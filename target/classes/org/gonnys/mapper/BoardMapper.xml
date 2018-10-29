@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+	"http://mybatis.org.dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.gonnys.mapper.BoardMapper">
+
+	<!-- Get List -->
+	<select id="getList" resultType="org.gonnys.domain.BoardVO">
+	
+		select * from tbl_board
+		where bno
+		> 0
+		
+	</select>
+
+
+	<!-- Get Write -->
+	<insert id="write">
+
+		<!-- <selectKey keyProperty="mno" order="BEFORE" resultType="int"> select 
+			tbl_member.mno, tbl_member.id from tbl_member, tbl_board where tbl_member.mno 
+			= tbl_board.mno </selectKey> -->
+
+		insert into tbl_board (title, content, writer)
+		values(#{title}, #{content}, #{writer});
+		
+	</insert>
+
+
+	<!-- Get Read -->
+	<select id="read" resultType="org.gonnys.domain.BoardVO">
+	
+	select * from
+	tbl_board
+	where bno = #{bno}
+	
+	</select>
+	
+	
+	<!-- Remove -->
+	<delete id="remove">
+	
+	delete from tbl_board where bno = #{bno}
+	
+	</delete>
+	
+	
+	<!-- Modify -->
+	<update id="modify">
+	
+	update tbl_board
+	set title = #{title}, content = #{content}
+	where bno = #{bno}
+	
+	</update>
+
+
+</mapper>
