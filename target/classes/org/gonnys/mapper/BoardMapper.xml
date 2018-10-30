@@ -8,8 +8,10 @@
 	<select id="getList" resultType="org.gonnys.domain.BoardVO">
 	
 		select * from tbl_board
-		where bno
-		> 0
+		where 1= 1
+		and bno > (select max(bno) - 100000 from tbl_board)
+		order by bno desc
+		limit #{skip}, #{display}
 		
 	</select>
 
@@ -40,7 +42,9 @@
 	<!-- Remove -->
 	<delete id="remove">
 	
-	delete from tbl_board where bno = #{bno}
+	update tbl_board
+	set del = 'O'
+	where bno = #{bno}
 	
 	</delete>
 	
@@ -54,5 +58,11 @@
 	
 	</update>
 
+	<!-- Count -->
+	<select id="count" resultType="int">
+		select count(*) from tbl_board
+		where 1 = 1
+		and bno > (select max(bno) - 100000 from tbl_board)
+	</select>
 
 </mapper>
