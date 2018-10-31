@@ -13,10 +13,18 @@ public class PageParam {
 	private int total, start, end, bno;
 	private boolean prev, next;
 	
+	private String[] types;
+	private String type;
+	private String keyword;
+	
+	
+	
 	
 	public PageParam() {
 		this.page = 1;
 		this.display = 10;
+		this.type="";
+		this.keyword="";
 	}
 	
 	
@@ -36,6 +44,15 @@ public class PageParam {
 		this.prev = this.start != 1;
 	}
 	
+	public void setType(String type) {
+		
+		this.type = type;
+		if (type == null || type.trim().length() == 0) {
+			return;
+		}
+		this.types = type.split("");
+	}
+	
 	public int getSkip() {
 		return (this.page -1) * 10;
 	}
@@ -45,6 +62,8 @@ public class PageParam {
 		return UriComponentsBuilder.fromPath(path)
 				.queryParam("bno", this.bno)
 				.queryParam("page", this.page)
+				.queryParam("type", this.type)
+				.queryParam("keyword", this.keyword)
 				.toString();
 	}
 	

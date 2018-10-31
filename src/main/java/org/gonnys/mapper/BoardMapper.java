@@ -25,6 +25,9 @@ public interface BoardMapper {
 	//count
 	public int count();
 	
+	//Search Count
+	public int serchCount(PageParam pageParam);
+	
 	
 
 }

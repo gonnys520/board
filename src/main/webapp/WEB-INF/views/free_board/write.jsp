@@ -24,6 +24,7 @@
                             <p class="text-muted">작성하실 글을 입력해주세요.</p>
                             <div class="table-responsive">
                             
+                            
                     <div class="col-md-8 col-xs-20">
                         <div class="white-box">
                             <form class="form-horizontal form-material" action="/free_board/write" method="post">

@@ -25,13 +25,21 @@
                             <h3 class="box-title">FREE BOARD</h3>
                             <p class="text-muted">이곳은 자유 게시판 입니다.</p>
                             <div class="table-responsive">
+                            <div>
+                            <select id="select">
+                            <option value="10" ${pageObj.display == 10? "selected":""}>10</option>
+                            <option value="20" ${pageObj.display == 20? "selected":""}>20</option>
+                            <option value="50" ${pageObj.display == 50? "selected":""}>50</option>
+                            <option value="100" ${pageObj.display == 100? "selected":""}>100</option>
+                            </select> 개씩 보기
+                            </div>
                                 <table class="table">
                                     <thead>
                                         <tr class="font-weight:bold">
                                             <th>NO</th>
                                             <th>TITLE</th>
                                             <th>WRITER</th>
-                                            <th>UPDATE TIME</th>
+                                            <th>REGDATE</th>
                                         </tr>
                                     </thead>
                                     
@@ -75,9 +83,36 @@
  
 
                                 </table>
-                                        <button type="submit" class="btn btn-success"
-                                        onclick="location.href='/free_board/write'">글쓰기</button>
-                                    </div>
+                <div class="center p-20">
+                    <button type="submit" onclick="location.href='/free_board/write'"
+                    class="btn btn-danger btn-block btn-rounded waves-effect waves-light">글쓰기</button>
+                </div>
+                            
+                <div>
+                <select name ="type">
+                  <option <c:out value="${pageObj.type == null?'selected':''}"/>>--</option>
+                  <option value="t"
+                    <c:out value="${pageObj.type == 't'?'selected':''}"/>>제목</option>
+                  <option value="c"
+                    <c:out value="${pageObj.type == 'c'?'selected':''}"/>>내용</option>
+                  <option value="w"
+                    <c:out value="${pageObj.type == 'w'?'selected':''}"/>>작성자</option>
+                  <option value="tc"
+                    <c:out value="${pageObj.type == 'tc'?'selected':''}"/>>제목+내용</option>
+                  <option value="tcw"
+                    <c:out value="${pgaeObj.type == 'tcw'?'selected':''}"/>>제목+내용+작성자</option>
+               
+                </select>
+                
+                   <div role="search" class="app-search">
+                   <input type="text" name="keyword" value="${pageObj.keyword}" placeholder="Search..." class="form-control">
+                   <i id="searchBtn" class="fa fa-search"></i>
+                   </div>
+
+                </div>        
+ 
+                                    
+                                    
                                     
     <div class="dataTables_paginate paging_simple_numbers"
     id="dataTables-example_paginate">
@@ -106,19 +141,20 @@
                         </div>
                     </div>
                 <!-- /.row -->
-                
+                </div>
                 
                 
   <!-- form -->
 <form id='actionForm'>
   <input type='hidden' name='page' id='page' value='${pageObj.page}'>
-  <input type='hidden' name='display' id='display'
-    value='${pageObj.display}'>
+  <input type='hidden' name='display' id='display' value='${pageObj.display}'>
+  <input type='hidden' name='type' id='type' value='${pageObj.type}'>
+  <input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
 </form>
                 
                     
             
-            <%@include file="../includes/footer.jsp" %>
+<%@include file="../includes/footer.jsp" %>
             
             
 <script>
@@ -142,6 +178,49 @@
 	actionForm.attr("action","/free_board/list")
 	.attr("method","get").submit();
 	});
+	
+	
+	//select
+	$('#select').change(function(e) {
+		e.preventDefault();
+		
+		var display = $(this).val();
+		$("#display").val(display);
+		actionForm.attr("action", "/free_board/list")
+		.attr("method", "get").submit();
+	});
+	
+	
+	//search
+	$('#searchBtn').on("click", function(e){
+		
+		var searchTypeValue = $("select[name='type'] option:selected").val();
+		
+		var searchKeyword = $("input[name='keyword']").val();
+		
+
+		if(searchKeyword.trim().length == 0){
+			alert("입력된 검색어가 없습니다. 다시 확인하세요.");
+			return;
+		}
+		
+		if(searchTypeValue == "--"){
+            alert("카테고리가 없습니다. 다시 확인하세요.");
+            return;
+         }
+		
+ 
+		
+		actionForm.attr("action","/free_board/list");
+		actionForm.find("input[name='type']").val(searchTypeValue);
+		actionForm.find("input[name='keyword']").val(searchKeyword);
+		$("#page").val(1);
+		
+		actionForm.submit();
+	});
+	
+	
+	
   
   }); 
   </script>

@@ -31,6 +31,10 @@
 	
 	<context:component-scan base-package="org.gonnys.controller" />
 	
+	<beans:bean id="multipartResolver"
+	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	</beans:bean>
+	
 	
 	
 </beans:beans>
