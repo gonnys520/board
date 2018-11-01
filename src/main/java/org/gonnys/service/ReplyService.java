@@ -12,7 +12,7 @@ public interface ReplyService {
 	
 	public ReplyVO read(int rno);
 	
-	public int delete(int bno);
+	public int remove(int rno);
 	
 	public int update(ReplyVO reply);
 	

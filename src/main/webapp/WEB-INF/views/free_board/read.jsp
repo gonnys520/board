@@ -45,6 +45,34 @@
                                         <c:out value="${board.content}"/></textarea>
                                     </div>
                                 </div>
+                                
+                                    <!-- row -->
+                    <div class="col-lg-6 col-md-12 col-sm-20">
+                        <div class="white-box">
+                            <h3 class="box-title">COMMENTS</h3>
+                               <a href="/free_board/list">
+                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 0;">댓글달기</button>
+                                </a></br>
+                            <div class="message-center">
+                            
+                                
+                               <ul class="chat">
+                               <a href="#">
+                                 <li data-rno='9'>
+                                    <div class="user-img"> <img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>
+                                    <div class='mail-contnet' name='replyer'>
+                                    	<h5></h5>
+                                    <span class='mail-desc' name='reply'></span>
+                                    <span class='time'></span> </div>
+                                 </li>
+                               </a>
+                               	</ul>
+
+                               
+                            </div>
+                        </div>
+                         
+                                <div>
                                 <a href="/free_board/modify?bno=<c:out value="${board.bno}"/>">
                                   <button type="submit" class="btn btn-success">수정 및 삭제</button>
                                 </a>
@@ -58,20 +86,90 @@
                 </div>
                 <!-- /.row -->
             <!-- /.container-fluid -->
-          
-    
-    <%@include file="../includes/footer.jsp" %>
+
+                    </div>
+                </div>
+                <!-- /.row -->
+                
+                
+<%@include file="../includes/footer.jsp" %>
     
     <script type="text/javascript" src="/resources/js/reply.js"></script>
     
     <script>
     
+    $(document).ready(function () {
+    	
+        var bnoValue = '<c:out value="${board.bno}"/>';
+        var replyUL = $(".chat");
+        
+        showList(1);
+        
+        function showList(page){
+        	
+        	replyService.getList({bno:bnoValue, page: page || 1}, function(list) {
+        		
+        		var str= "";
+        	if(list == null || list.length == 0){
+        		replyUL.html("");
+        		
+        		return; 
+        	}
+        	for (var i = 0, len = list.length || 0; i < len; i++){
+        		str +="<li data-rno="+list[i].rno+">";
+/*          		str +="<div class="user-img"><img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>";  */
+        		str +="<div class='mail-contnet' name='replyer'><h5>"+list[i].replyer+"</h5>"
+        		str +="<span class='mail-desc' name='reply'>"+list[i].reply+"</span>"
+        		str +="<span class='time'>"+replyService.displayTime(list[i].replyDate)+"</span>"
+        	}
+        	replyUL.html(str);
+        	
+        	});
+        }
+    });
+    
     console.log("===============");
     console.log("JS TEST");
     
-    var bnoValue = '<c:out value="${board.bno}"/>';
+
     
-    //for replyService add test
+/*     //reply List
+    replyService.getList({bno:bnoValue, page:1}, function(list){
+    	
+    	for(var i = 0, len = list.length||0; i < len; i++){
+    		console.log(list[i]);
+    	}
+    }); */
+    
+/*     //Remove
+    replyService.remove(2, function(count){
+    	
+    	console.log(count);
+    	
+    	if(count === "success"){
+    		alert("Removed");
+    	}
+    }, function(err) {
+    	alert("ERROR....");
+    }); */
+    
+/*     //Update
+    replyService.update({
+    	rno: 9,
+    	bno: bnoValue,
+    	reply: "리플수정중!"
+    }, function(result){
+    	alert("수정 완료!");
+    }); */
+    
+    
+/*     //Read
+    replyService.read(9, function(data){
+    	console.log(data);
+    }); */
+    
+    
+/*     //for replyService add test
     replyService.add(
     		{reply:"JS Test", replyer:"tester", bno:bnoValue}
     		,
@@ -79,7 +177,8 @@
     			alert("RESULT: " + result);
     		}
     	);
-    
+     */
+     
     </script>
     
     

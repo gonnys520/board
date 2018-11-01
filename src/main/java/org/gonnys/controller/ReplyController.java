@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/replies")
+@RequestMapping("/replies/*")
 @RestController
 @Log4j
 @AllArgsConstructor
@@ -78,10 +78,10 @@ public class ReplyController {
 	
 	//Delete
 	@DeleteMapping
-	public ResponseEntity<String> delete(@PathVariable("rno") int rno) {
+	public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
 		log.info("delete:" + rno);
 		
-		return service.delete(rno) == 1
+		return service.remove(rno) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}

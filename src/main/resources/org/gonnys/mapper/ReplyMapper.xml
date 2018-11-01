@@ -13,8 +13,8 @@ values (#{bno}, #{reply}, #{replyer})
 select * from tbl_reply where rno = #{rno}
 </select>
 
-<delete id="delete">
-delete from tbl_reply where bno = #{bno}
+<delete id="remove">
+delete from tbl_reply where rno = #{rno}
 </delete>
 
 <update id="update">

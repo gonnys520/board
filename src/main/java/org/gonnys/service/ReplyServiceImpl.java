@@ -32,9 +32,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int delete(int bno) {
+	public int remove(int rno) {
 		log.info("delete..................");
-		return mapper.delete(bno);
+		return mapper.remove(rno);
 	}
 
 	@Override
