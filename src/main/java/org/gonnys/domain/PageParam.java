@@ -26,8 +26,7 @@ public class PageParam {
 		this.type="";
 		this.keyword="";
 	}
-	
-	
+		
 	
 	public void setTotal(int total) {
 		this.total = total;
