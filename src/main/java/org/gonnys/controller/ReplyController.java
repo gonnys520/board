@@ -77,7 +77,11 @@ public class ReplyController {
 	
 	
 	//Delete
+<<<<<<< HEAD
 	@DeleteMapping("/{rno}")
+=======
+	@DeleteMapping
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
 	public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
 		log.info("delete:" + rno);
 		

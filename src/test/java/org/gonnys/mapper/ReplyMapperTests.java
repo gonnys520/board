@@ -35,8 +35,8 @@ public class ReplyMapperTests {
 		ReplyVO vo = new ReplyVO();
 		
 		vo.setBno(1577);
-		vo.setReply("댓글 테스트");
-		vo.setReplyer("나 자신");
+		vo.setReply("�뙎湲� �뀒�뒪�듃");
+		vo.setReplyer("�굹 �옄�떊");
 
 		mapper.create(vo);
 	}
@@ -44,7 +44,7 @@ public class ReplyMapperTests {
 	@Test
 	public void ReadTest() {
 	
-		Integer rno = 1;
+		Integer rno = 2;
 		ReplyVO vo = mapper.read(rno);
 		
 		log.info(vo);
@@ -53,7 +53,7 @@ public class ReplyMapperTests {
 	@Test
 	public void DeleteTest() {
 	
-		Integer rno = 1;
+		Integer rno = 10;
 		
 		log.info(mapper.remove(rno));
 	}

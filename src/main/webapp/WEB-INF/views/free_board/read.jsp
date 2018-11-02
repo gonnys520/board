@@ -47,6 +47,7 @@
                                 </div>
                                 
                                     <!-- row -->
+<<<<<<< HEAD
                     <div style="display:flex; width:100%; height:auto;">
                         <div class="white-box">
                             <h3 class="col-md-20">COMMENTS</h3>
@@ -101,6 +102,34 @@
     <!-- 페이징 End -->
     </br>
                                     <div>
+=======
+                    <div class="col-lg-6 col-md-12 col-sm-20">
+                        <div class="white-box">
+                            <h3 class="box-title">COMMENTS</h3>
+                               <a href="/free_board/list">
+                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 0;">댓글달기</button>
+                                </a></br>
+                            <div class="message-center">
+                            
+                                
+                               <ul class="chat">
+                               <a href="#">
+                                 <li data-rno='9'>
+                                    <div class="user-img"> <img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>
+                                    <div class='mail-contnet' name='replyer'>
+                                    	<h5></h5>
+                                    <span class='mail-desc' name='reply'></span>
+                                    <span class='time'></span> </div>
+                                 </li>
+                               </a>
+                               	</ul>
+
+                               
+                            </div>
+                        </div>
+                         
+                                <div>
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
                                 <a href="/free_board/modify?bno=<c:out value="${board.bno}"/>">
                                   <button type="submit" class="btn btn-warning">수정 및 삭제</button>
                                 </a>
@@ -117,6 +146,7 @@
                 </div>
                 <!-- /.row -->
             <!-- /.container-fluid -->
+<<<<<<< HEAD
                     </div>
                 </div>
                 <!-- /.row -->
@@ -166,6 +196,13 @@
   <!-- /.modal--->
   </div>
 </div>
+=======
+
+                    </div>
+                </div>
+                <!-- /.row -->
+                
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
                 
 <%@include file="../includes/footer.jsp" %>
     
@@ -177,6 +214,7 @@
     	
         var bnoValue = '<c:out value="${board.bno}"/>';
         var replyUL = $(".chat");
+<<<<<<< HEAD
         var modal = $(".modal");
         var modalInputReply = modal.find("input[name='reply']");
         var modalIntputReplyer = modal.find("input[name='replyer']");
@@ -305,8 +343,43 @@
     		
     	}); 	
     });
+=======
+        
+        showList(1);
+        
+        function showList(page){
+        	
+        	replyService.getList({bno:bnoValue, page: page || 1}, function(list) {
+        		
+        		var str= "";
+        	if(list == null || list.length == 0){
+        		replyUL.html("");
+        		
+        		return; 
+        	}
+        	for (var i = 0, len = list.length || 0; i < len; i++){
+        		str +="<li data-rno="+list[i].rno+">";
+/*          		str +="<div class="user-img"><img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>";  */
+        		str +="<div class='mail-contnet' name='replyer'><h5>"+list[i].replyer+"</h5>"
+        		str +="<span class='mail-desc' name='reply'>"+list[i].reply+"</span>"
+        		str +="<span class='time'>"+replyService.displayTime(list[i].replyDate)+"</span>"
+        	}
+        	replyUL.html(str);
+        	
+        	});
+        }
+    });
     
+    console.log("===============");
+    console.log("JS TEST");
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
     
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
+    
+<<<<<<< HEAD
     $(".chat").on("click", "li", function(e){
     	
     	var rno = $(this).data("rno");
@@ -392,6 +465,27 @@
     	alert("ERROR....");
     }); */
     
+=======
+/*     //reply List
+    replyService.getList({bno:bnoValue, page:1}, function(list){
+    	
+    	for(var i = 0, len = list.length||0; i < len; i++){
+    		console.log(list[i]);
+    	}
+    }); */
+    
+/*     //Remove
+    replyService.remove(2, function(count){
+    	
+    	console.log(count);
+    	
+    	if(count === "success"){
+    		alert("Removed");
+    	}
+    }, function(err) {
+    	alert("ERROR....");
+    }); */
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
     
 /*     //Update
     replyService.update({
@@ -418,8 +512,12 @@
     		}
     	);
      */
+<<<<<<< HEAD
 
 
+=======
+     
+>>>>>>> branch 'master' of https://github.com/gonnys520/board.git
     </script>
     
     
