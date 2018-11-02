@@ -11,7 +11,7 @@ public interface BoardService {
 	public List<BoardVO> getList(PageParam param);
 	
 	//Write
-	public void write(BoardVO board);
+	public int write(BoardVO board);
 
 	//Read
 	public BoardVO read(PageParam param);

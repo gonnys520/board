@@ -151,13 +151,35 @@
   <input type='hidden' name='type' id='type' value='${pageObj.type}'>
   <input type='hidden' name='keyword' id='keyword' value='${pageObj.keyword}'>
 </form>
+  
                 
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+          aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">COMMENT</h4>
+      </div>
+      <div class="modal-body">처리가 완료되었습니다.</div>
+      <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">확인</button>
+    <!-- /.modal-content -->
+   </div>
+  <!-- /.modal-dialog -->
+    </div>
+  <!-- /.modal--->
+  </div>
+</div>
+       
                     
             
 <%@include file="../includes/footer.jsp" %>
             
             
-<script>
+<script type="text/javascript">
   $(document).ready(
   function() {
 
@@ -218,11 +240,31 @@
 		
 		actionForm.submit();
 	});
+
+	var result = '<c:out value="${result}"/>';
+	
+	checkModal(result);
+	
+	function checkModal(result){
+		
+		console.log(result);
+		
+		if (result === ''){
+			
+			return;
+		}
+		
+		if (result > 0) {
+			
+			$(".modal-body").html("게시글이 등록되었습니다.");
+		}
+		
+		$("#myModal").modal("show");
+	}
+});
 	
 	
-	
-  
-  }); 
+ 
   </script>
   
   

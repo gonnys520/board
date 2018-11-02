@@ -23,11 +23,11 @@ public class PageParam {
 	public PageParam() {
 		this.page = 1;
 		this.display = 10;
-		this.type="";
-		this.keyword="";
+		this.type = "";
+		this.keyword = "";
 	}
 		
-	
+
 	public void setTotal(int total) {
 		this.total = total;
 		this.end = (int) (Math.ceil(this.page / 10.0)) * 10;

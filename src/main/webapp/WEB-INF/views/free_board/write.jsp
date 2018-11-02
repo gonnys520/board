@@ -54,7 +54,7 @@
                                     </div>
                                 </div>
                                
-                                        <button type="submit" class="btn btn-success">작성완료</button>
+                                        <button type="submit" class="btn btn-warning">작성완료</button>
                                         </form>
                                          <a href="/free_board/list">
                                             <button class="btn btn-success">돌아가기</button>

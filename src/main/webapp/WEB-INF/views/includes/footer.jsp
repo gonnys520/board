@@ -23,10 +23,10 @@
     <script src="../resources/plugins/bower_components/counterup/jquery.counterup.min.js"></script>
     <!--Morris JavaScript -->
     <script src="../resources/plugins/bower_components/raphael/raphael-min.js"></script>
-    <script src="../resources/plugins/bower_components/morrisjs/morris.js"></script>
+<!--     <script src="../resources/plugins/bower_components/morrisjs/morris.js"></script> -->
     <!-- Custom Theme JavaScript -->
     <script src="../resources/html/js/custom.min.js"></script>
-    <script src="../resources/html/js/dashboard1.js"></script>
+<!--     <script src="../resources/html/js/dashboard1.js"></script> -->
     <script src="../resources/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
     
 </body>

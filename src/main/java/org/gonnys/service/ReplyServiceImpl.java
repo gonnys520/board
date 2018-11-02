@@ -3,7 +3,8 @@ package org.gonnys.service;
 import java.util.List;
 
 import org.gonnys.domain.BoardVO;
-import org.gonnys.domain.PageParam;
+import org.gonnys.domain.ReplyPageDTO;
+import org.gonnys.domain.ReplyParam;
 import org.gonnys.domain.ReplyVO;
 import org.gonnys.mapper.ReplyMapper;
 import org.springframework.stereotype.Service;
@@ -32,9 +33,9 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public int delete(int bno) {
+	public int remove(int rno) {
 		log.info("delete..................");
-		return mapper.delete(bno);
+		return mapper.remove(rno);
 	}
 
 	@Override
@@ -43,11 +44,19 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.update(reply);
 	}
 
+//	@Override
+//	public List<ReplyVO> getList(ReplyParam param, int bno) {
+//		log.info("get Reply Lisr of a Board" + bno);
+//		return mapper.getList(param, bno);
+//	}
+
 	@Override
-	public List<ReplyVO> getList(PageParam param, int bno) {
-		log.info("get Reply Lisr of a Board" + bno);
-		return mapper.getList(param, bno);
-	}
+	public ReplyPageDTO getListPage(ReplyParam param, int bno) {
+		return new ReplyPageDTO(
+				mapper.getCountByBno(bno),
+				mapper.getListPage(param, bno));
+		}
+
 
 
 }

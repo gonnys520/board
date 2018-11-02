@@ -2,8 +2,8 @@ package org.gonnys.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-import org.gonnys.domain.PageParam;
+import org.gonnys.domain.ReplyPageDTO;
+import org.gonnys.domain.ReplyParam;
 import org.gonnys.domain.ReplyVO;
 
 public interface ReplyService {
@@ -12,9 +12,11 @@ public interface ReplyService {
 	
 	public ReplyVO read(int rno);
 	
-	public int delete(int bno);
+	public int remove(int rno);
 	
 	public int update(ReplyVO reply);
 	
-	public List<ReplyVO> getList(PageParam param, int bno);
+//	public List<ReplyVO> getList(ReplyParam param, int bno);
+	
+	public ReplyPageDTO getListPage(ReplyParam param, int bno);
 }

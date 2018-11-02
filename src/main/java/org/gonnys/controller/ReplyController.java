@@ -2,9 +2,11 @@ package org.gonnys.controller;
 
 import java.util.List;
 
-import org.gonnys.domain.PageParam;
+import org.gonnys.domain.ReplyPageDTO;
+import org.gonnys.domain.ReplyParam;
 import org.gonnys.domain.ReplyVO;
 import org.gonnys.service.ReplyService;
+import org.gonnys.service.ReplyServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@RequestMapping("/replies")
+@RequestMapping("/replies/*")
 @RestController
 @Log4j
 @AllArgsConstructor
@@ -52,15 +54,13 @@ public class ReplyController {
 			produces = {
 					MediaType.APPLICATION_ATOM_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(
+	public ResponseEntity<ReplyPageDTO> getListPage(
 			@PathVariable("page")int page,
 			@PathVariable("bno")int bno){
 		
-		log.info("get List.............");
-		PageParam param = new PageParam();
-		log.info(param);
+		ReplyParam param = new ReplyParam(page, 10);
 		
-		return new ResponseEntity<>(service.getList(param, bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(param, bno), HttpStatus.OK);
 	}
 	
 	
@@ -77,11 +77,11 @@ public class ReplyController {
 	
 	
 	//Delete
-	@DeleteMapping
-	public ResponseEntity<String> delete(@PathVariable("rno") int rno) {
+	@DeleteMapping("/{rno}")
+	public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
 		log.info("delete:" + rno);
 		
-		return service.delete(rno) == 1
+		return service.remove(rno) == 1
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -105,4 +105,7 @@ public class ReplyController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 				
 	}
+	
+
+
 }

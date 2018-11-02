@@ -13,20 +13,35 @@ values (#{bno}, #{reply}, #{replyer})
 select * from tbl_reply where rno = #{rno}
 </select>
 
-<delete id="delete">
-delete from tbl_reply where bno = #{bno}
+<delete id="remove">
+delete from tbl_reply where rno = #{rno}
 </delete>
 
 <update id="update">
 update tbl_reply set reply = #{reply} where rno = #{rno} 
 </update>
 
-<select id="getList" resultType="org.gonnys.domain.ReplyVO">
-select rno, bno, reply, replyer, replyDate, updateDate
+<select id="getListPage" resultType="org.gonnys.domain.ReplyVO">
+
+select * from tbl_reply
+where 1= 1
+and bno > (select max(bno) - 100000 from tbl_reply)
+and bno = #{bno}
+order by bno desc
+limit #{param.skip}, #{param.amount}
+
+
+<!--  select rno, bno, reply, replyer, replyDate
 from tbl_reply
 where bno = #{bno}
-order by rno asc
+order by rno asc  -->
+
 </select>
+
+<select id="getCountByBno" resultType="int">
+select count(rno) from tbl_reply where bno = #{bno}
+</select>
+
 
 
 </mapper>

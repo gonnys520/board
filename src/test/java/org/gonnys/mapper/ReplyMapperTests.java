@@ -2,7 +2,7 @@ package org.gonnys.mapper;
 
 import java.util.List;
 
-import org.gonnys.domain.PageParam;
+import org.gonnys.domain.ReplyParam;
 import org.gonnys.domain.ReplyVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +55,7 @@ public class ReplyMapperTests {
 	
 		Integer rno = 1;
 		
-		log.info(mapper.delete(rno));
+		log.info(mapper.remove(rno));
 	}
 	
 	@Test
@@ -69,10 +69,17 @@ public class ReplyMapperTests {
 	
 	@Test
 	public void testList() {
-		PageParam param = new PageParam();
-		List<ReplyVO> replies = mapper.getList(param, 1577);
+		ReplyParam param = new ReplyParam(2,10);
+		List<ReplyVO> replies = mapper.getListPage(param, 1577);
 		replies.forEach(reply -> log.info(reply));
 	}
-	
+//	
+//	@Test
+//	public void testList2() {
+//		ReplyParam param = new ReplyParam(2, 10);
+//		List<ReplyVO> replies = mapper.getList(param, 1577);
+//		replies.forEach(reply -> log.info(reply));
+//		
+//	}
 	
 }

@@ -36,8 +36,7 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writePOST(BoardVO board, RedirectAttributes redirect) {
 		
-		service.write(board);
-		redirect.addFlashAttribute("result", board.getBno());
+		redirect.addFlashAttribute("result", service.write(board));
 		
 		return "redirect:/free_board/list";
 	}
