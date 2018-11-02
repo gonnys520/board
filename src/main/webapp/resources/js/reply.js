@@ -30,11 +30,11 @@ var replyService = (function(){
 		$.getJSON("/replies/pages/" + bno + "/" + page + ".json",
 			function(data) {
 				if (callback) {
-<<<<<<< HEAD
+
 					callback(data.replyCnt, data.list);
-=======
+
 					callback(data);
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
+
 				}
 		}).fail(function(xhr, status, err) {
 			if(error) {
