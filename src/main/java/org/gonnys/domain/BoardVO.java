@@ -12,5 +12,9 @@ public class BoardVO {
 	private String mid, title, writer, content, del;
 	private Date date_time, update_time;
 	
+	private int replyCnt;
+	
+	private List<BoardAttachVO> attachList;
+	
 
 };

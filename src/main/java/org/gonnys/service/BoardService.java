@@ -2,11 +2,15 @@ package org.gonnys.service;
 
 import java.util.List;
 
+import org.gonnys.domain.BoardAttachVO;
 import org.gonnys.domain.BoardVO;
 import org.gonnys.domain.PageParam;
 
 public interface BoardService {
 
+	//getListFile
+	public List<BoardAttachVO> getAttachList(Integer bno);
+	
 	//getList
 	public List<BoardVO> getList(PageParam param);
 	

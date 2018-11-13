@@ -27,6 +27,9 @@ public interface BoardMapper {
 	
 	//Search Count
 	public int serchCount(PageParam pageParam);
+
+	
+	public void insertSelectKey(BoardVO board);
 	
 	
 

@@ -2,10 +2,66 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@include file="../includes/header.jsp" %>
 <!DOCTYPE html>
 
-<%@include file="../includes/header.jsp" %>
+<div class='bigPictureWrapper'>
+  <div class='bigPicture'>
+  </div>
+</div>
 
+<style>
+.uploadResult{
+  width:100%;
+  background-color:white;
+  }
+.uploadResult ul{
+  display:flex;
+  flex-flow:row;
+  justify-content:center;
+  align-items:center;
+} 
+.uploadResult ul li{
+  list-style: none;
+  padding: 10px;
+  align-content: center;
+  text-align: center;
+}
+.uploadResult ul li img{
+  width:100px;
+}
+.uploadResult ul li span{
+  color:white;
+}
+.bigPictureWrapper{
+  position: absolute;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  top: 0%;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 100;
+  background:rgba(255,255,255,0.5);
+}
+.bigPicture{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bigPicture img{
+  width: 600px; 
+}
+.comment ul{
+list-style:none;
+padding-left:0px;
+}
+.content {
+  white-space: pre-wrap;
+}
+</style>
 
    <!-- Page Content -->
         <div id="page-wrapper">
@@ -45,9 +101,18 @@
                                         <c:out value="${board.content}"/></textarea>
                                     </div>
                                 </div>
-                                
+                                  <div class="form-group">
+                                    <label class="col-md-20">FILES</label>
+                                    <div class="col-md-20">
+                                        <div class="form-control form-control-line">
+                                        <div class='uploadResult'>
+                                        <ul>
+                                        
+                                        </ul>
+                                       </div>
+                                    </div>
+                                </div>
                                     <!-- row -->
-<<<<<<< HEAD
                     <div style="display:flex; width:100%; height:auto;">
                         <div class="white-box">
                             <h3 class="col-md-20">COMMENTS</h3>
@@ -76,6 +141,32 @@
                             </div>
                             </div>
 
+
+
+                               
+                            </div>
+                        </div>
+                         
+                                <div>
+                                <a href="/free_board/modify?bno=<c:out value="${board.bno}"/>">
+                                  <button type="submit" class="btn btn-warning">수정 및 삭제</button>
+                                </a>
+                                <a href="/free_board/list">
+                                  <button type="submit" class="btn btn-default">돌아가기</button>
+                                </a>
+    </div>
+
+
+                                  
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            <!-- /.container-fluid -->
+                    </div>
+
+                
                                 
                                 <!-- 페이징 Start -->
                 
@@ -100,58 +191,7 @@
     </ul>
   </div> -->
     <!-- 페이징 End -->
-    </br>
-                                    <div>
-=======
-                    <div class="col-lg-6 col-md-12 col-sm-20">
-                        <div class="white-box">
-                            <h3 class="box-title">COMMENTS</h3>
-                               <a href="/free_board/list">
-                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 0;">댓글달기</button>
-                                </a></br>
-                            <div class="message-center">
-                            
-                                
-                               <ul class="chat">
-                               <a href="#">
-                                 <li data-rno='9'>
-                                    <div class="user-img"> <img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>
-                                    <div class='mail-contnet' name='replyer'>
-                                    	<h5></h5>
-                                    <span class='mail-desc' name='reply'></span>
-                                    <span class='time'></span> </div>
-                                 </li>
-                               </a>
-                               	</ul>
 
-                               
-                            </div>
-                        </div>
-                         
-                                <div>
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
-                                <a href="/free_board/modify?bno=<c:out value="${board.bno}"/>">
-                                  <button type="submit" class="btn btn-warning">수정 및 삭제</button>
-                                </a>
-                                <a href="/free_board/list">
-                                  <button type="submit" class="btn btn-default">돌아가기</button>
-                                </a>
-    </div>
-
-
-                                  
-                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-            <!-- /.container-fluid -->
-<<<<<<< HEAD
-                    </div>
-                </div>
-                <!-- /.row -->
-               </div>
-               
                 
     <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
@@ -196,25 +236,30 @@
   <!-- /.modal--->
   </div>
 </div>
-=======
+
 
                     </div>
                 </div>
                 <!-- /.row -->
                 
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
+
                 
 <%@include file="../includes/footer.jsp" %>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+<script type="text/javascript" src="/resources/js/reply.js"></script>
     
-    <script type="text/javascript" src="/resources/js/reply.js"></script>
-    
-    <script>
+<script>
     
     $(document).ready(function () {
     	
+    	var bno = '<c:out value="${board.bno}"/>';
+    	
+    	
+    	
         var bnoValue = '<c:out value="${board.bno}"/>';
         var replyUL = $(".chat");
-<<<<<<< HEAD
         var modal = $(".modal");
         var modalInputReply = modal.find("input[name='reply']");
         var modalIntputReplyer = modal.find("input[name='replyer']");
@@ -231,7 +276,43 @@
         showList(1);
                 
                 
-        function showReplyPage(replyCnt){
+        function showList(page){
+        	
+        	replyService.getList({bno:bnoValue, page: page || 1},
+        			function(replyCnt, list) {
+        		
+        		console.log("replyCnt:" + replyCnt);
+        		console.log("list:" + list);
+        		console.log(list);
+        		
+        		if(page == -1) {
+        			pageNum = Math.ceil(replyCnt/10.0);
+        			showList(pageNum);
+        			return;
+        		}
+        		
+                var str= "";
+                
+                
+        		if(list == null || list.length == 0){
+        		return; 
+        	}
+        		
+        		for (var i = 0, len = list.length || 0; i < len; i++){
+        		str +="<li data-rno="+list[i].rno+">";
+/*          		str +="<div class="user-img"><img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>";  */
+        		str +="<div class='mail-contnet' name='replyer'><h5>"+list[i].replyer+"</h5>"
+        		str +="<span class='mail-desc' name='reply'>"+list[i].reply+"</span>"
+        		str +="<span class='time'>"+replyService.displayTime(list[i].replyDate)+"</span>"
+        	}
+        	replyUL.html(str);
+        	
+        	showReplyPage(replyCnt);
+        	
+        	});
+        };
+        
+  function showReplyPage(replyCnt){
         	
         	var endNum = Math.ceil( pageNum / 10.0) * 10;
         	var startNum = endNum - 9;
@@ -271,115 +352,59 @@
         	
         	replyPageFooter.html(str);
         	
-        };
-        
-        
-        function showList(page){
-        	
-        	replyService.getList({bno:bnoValue, page: page || 1},
-        			function(replyCnt, list) {
-        		
-        		console.log("replyCnt:" + replyCnt);
-        		console.log("list:" + list);
-        		console.log(list);
-        		
-        		if(page == -1) {
-        			pageNum = Math.ceil(replyCnt/10.0);
-        			showList(pageNum);
-        			return;
-        		}
-        		
-                var str= "";
-                
-                
-        		if(list == null || list.length == 0){
-        		return; 
-        	}
-        		
-        		for (var i = 0, len = list.length || 0; i < len; i++){
-        		str +="<li data-rno="+list[i].rno+">";
-/*          		str +="<div class="user-img"><img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>";  */
-        		str +="<div class='mail-contnet' name='replyer'><h5>"+list[i].replyer+"</h5>"
-        		str +="<span class='mail-desc' name='reply'>"+list[i].reply+"</span>"
-        		str +="<span class='time'>"+replyService.displayTime(list[i].replyDate)+"</span>"
-        	}
-        	replyUL.html(str);
-        	
-        	showReplyPage(replyCnt);
-        	
-        	});
-        };
-        
-
-       $("#addReplyBtn").on("click", function(e){
-    	 
-    	   modal.find("input").val("");
-    	   modalInputReplyDate.closest("div").hide();
-    	   modal.find("button[id !='modalCloseBtn']").hide();
-    	   
-    	   modalWriteBtn.show();
-    	   
-    	   $(".modal").modal("show");
-    	   
-       });
-       
-   
-    $("#modalWriteBtn").on("click", function(e){
-    	
-    	var reply = {
-    			reply: modalInputReply.val(),
-    			replyer: modalIntputReplyer.val(),
-    			bno: bnoValue
-    	};
-    	
-     	replyService.add(reply, function(result) {
-    		
-    		alert(result);
-    		
-    		modal.find("input").val("");
-    		modal.modal("hide");
-    		
-    		showList(-1);
-    		
-    	}); 	
-    });
-=======
-        
-        showList(1);
-        
-        function showList(page){
-        	
-        	replyService.getList({bno:bnoValue, page: page || 1}, function(list) {
-        		
-        		var str= "";
-        	if(list == null || list.length == 0){
-        		replyUL.html("");
-        		
-        		return; 
-        	}
-        	for (var i = 0, len = list.length || 0; i < len; i++){
-        		str +="<li data-rno="+list[i].rno+">";
-/*          		str +="<div class="user-img"><img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>";  */
-        		str +="<div class='mail-contnet' name='replyer'><h5>"+list[i].replyer+"</h5>"
-        		str +="<span class='mail-desc' name='reply'>"+list[i].reply+"</span>"
-        		str +="<span class='time'>"+replyService.displayTime(list[i].replyDate)+"</span>"
-        	}
-        	replyUL.html(str);
-        	
-        	});
         }
-    });
+        
+        replyPageFooter.on("click", "li a", function(e){
+        	e.preventDefault();
+        	console.log("page click");
+        	
+        	var targetPageNum = $(this).attr("href");
+        	
+        	console.log("targetPageNum: " + targetPageNum);
+        	
+        	pageNum = targetPageNum;
+        	
+        	showList(pageNum);
+        });
+     
     
     console.log("===============");
     console.log("JS TEST");
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
     
-<<<<<<< HEAD
-=======
+    $("#addReplyBtn").on("click", function(e){
+   	 
+ 	   modal.find("input").val("");
+ 	   modalInputReplyDate.closest("div").hide();
+ 	   modal.find("button[id !='modalCloseBtn']").hide();
+ 	   
+ 	   modalWriteBtn.show();
+ 	   
+ 	   $("#myModal").show();
+ 	   
+    });
+    
 
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
-    
-<<<<<<< HEAD
+ $("#modalWriteBtn").on("click", function(e){
+ 	
+ 	var reply = {
+ 			reply: modalInputReply.val(),
+ 			replyer: modalIntputReplyer.val(),
+ 			bno: bnoValue
+ 	};
+ 	
+  	replyService.add(reply, function(result) {
+ 		
+ 		alert(result);
+ 		
+ 		modal.find("input").val("");
+ 		modal.hide();
+ 		
+ 		showList(-1);
+ 		
+ 	}); 	
+ });
+
+
     $(".chat").on("click", "li", function(e){
     	
     	var rno = $(this).data("rno");
@@ -395,7 +420,7 @@
     		modalModBtn.show();
     		modalRemoveBtn.show();
     		
-    		$(".modal").modal("show");
+    		$("#myModal").show();
     	});
     });
     
@@ -405,7 +430,7 @@
     	replyService.update(reply, function(result){
     		
     		alert(result);
-    		modal.modal("hide");
+    		$("#myModal").hide();
     		showList(pageNum);
     	});
     	
@@ -423,26 +448,44 @@
     	});
     });
     
-    replyPageFooter.on("click", "li a", function(e){
-    	e.preventDefault();
-    	console.log("page click");
-    	
-    	var targetPageNum = $(this).attr("href");
-    	
-    	console.log("targetPageNum: " + targetPageNum);
-    	
-    	pageNum = targetPageNum;
-    	
-    	showList(pageNum);
-    });
-    
     
     $("#modalCloseBtn").on("click", function(e){
-    		modal.modal("hide");
+    	 $("#myModal").hide();
 			
 	});
     
+    $.getJSON("/free_board/getAttachList", {bno:bno}, function(arr) {
+		console.log(arr);
+		
+		var str = "";
+		
+		$(arr).each(function(i, attach){
+			
+			//image type
+			if(attach.fileType){
+				var fileCallPath = encodeURIComponent(attach.uploadPath+ "/s_"+ attach.uuid + "_" + attach.fileName);
+				var fileCallPathOrigin = encodeURIComponent(attach.uploadPath+ "/"+ attach.uuid + "_" + attach.fileName);
+				
+				str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
+				str += "<span><a href='/board/download?fileName="+fileCallPathOrigin+"'><font color='black'> "+ attach.fileName+ "</font></a></span><br/>";
+				str += "<img src='/board/display?fileName="+fileCallPath+"'>";
+				str += "</div>";
+				str +"</li>";
+			}else{
+				
+				str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"'><div>";
+				str += "<span><font color='black'> "+ attach.fileName+ "</font></span><br/>";
+				str += "<img src='/resources/img/filetree/file.png'></a>";
+				str += "</div>";
+				str +"</li>";
+			}
+		});
+		
+		$(".uploadResult ul").html(str);
+	}); //end getjson
 });
+
+</script>
 
     
 /*     //reply List
@@ -465,7 +508,7 @@
     	alert("ERROR....");
     }); */
     
-=======
+
 /*     //reply List
     replyService.getList({bno:bnoValue, page:1}, function(list){
     	
@@ -485,7 +528,7 @@
     }, function(err) {
     	alert("ERROR....");
     }); */
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
+
     
 /*     //Update
     replyService.update({
@@ -512,13 +555,8 @@
     		}
     	);
      */
-<<<<<<< HEAD
 
 
-=======
-     
->>>>>>> branch 'master' of https://github.com/gonnys520/board.git
-    </script>
     
     
     

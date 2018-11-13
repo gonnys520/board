@@ -7,24 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-<div class='uploadDiv'>
-  <input type='file' name='uploadFile' multiple>
-</div>
-  <button id='uploadBtn'>UPLOAD</button>
-  
-  <div class ='uploadResult'>
-    <ul>
-    </ul>
-  </div>
-
-<div class='bigPictureWrapper'>
-  <div class='bigPicture'>
-  </div>
-</div>
-
-
 <style>
 .uploadResult {
   width: 100%;
@@ -80,6 +62,25 @@
 
 
 
+<div class='uploadDiv'>
+  <input type='file' name='uploadFile' multiple>
+</div>
+  <button id='uploadBtn'>UPLOAD</button>
+  
+  <div class ='uploadResult'>
+    <ul>
+    </ul>
+  </div>
+
+<div class='bigPictureWrapper'>
+  <div class='bigPicture'>
+  </div>
+</div>
+
+
+
+
+
 <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -91,30 +92,32 @@
 	  $(".bigPictureWrapper").css("display","flex").show();
 	
 	  $(".bigPicture")
-	  .html("<img src='/free_board/display?fileName=" encodeURI(fileCallPath)"'>")
+	  .html("<img src='/free_board/display?fileName="+encodeURI(fileCallPath)+"'>")
 	  .animate({width:'100%', height: '100%'}, 1000);
   }
   
   $(document).ready(function(){
 	  
-
-	  
+	  var uploadResult = $(".uploadResult ul");
+	 
 	  
 	  
 	  $(".bigPictureWrapper").on("click", function(e){
 		  $(".bigPicture").animate({width: '0%', height: '0%'}, 1000);
-		  setTimeout() = {
-			  $('.bigPictureWrapper').hide();
+		  setTimeout(function(){
+			  $(".bigPictureWrapper").hide();
 		  }, 1000); 
 	  });
 	  
 	  
-	  var uploadResult = $(".uploadResult ul");
+
 	  
 	  function showUploadedFile(uploadResultArr){
+		  
 		  var str = "";
 		  
 		$(uploadResultArr).each(function(i, obj) {
+			
 					if(!obj.image){
 						
 						var fileCallPath = encodeURIComponent
@@ -189,13 +192,14 @@
 			  var type = $(this).data("type");
 			  console.log(targetFile);
 
+			  
 	$.ajax({
 		url: '/free_board/uploadAjaxAction',
 		processData: false,
 		contentType: false,
-		data: formData,
+		data: {fileName: targetFile, type:type},
+		dataType: 'text',
 		type: 'POST',
-		dataType: 'json',
 		success: function(result){
 			console.log(result);
 			showUploadedFile(result);

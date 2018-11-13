@@ -1,17 +1,21 @@
 package org.gonnys.controller;
 
-import java.io.File;
+import java.util.List;
 
+import org.gonnys.domain.BoardAttachVO;
 import org.gonnys.domain.BoardVO;
 import org.gonnys.domain.PageParam;
 import org.gonnys.service.BoardService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +29,23 @@ public class BoardController {
 
 	private BoardService service;
 	
+	//첨부파일 read
+	@GetMapping(value = "/getAttachList",
+			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<BoardAttachVO>> getAttachList(Integer bno){
+		
+		log.info("getAttachList " + bno);
+		
+		return new ResponseEntity<>(service.getAttachList(bno), HttpStatus.OK);
+		
+	}
+	
+	
+	
+	
+	
+	
 	@GetMapping("/list")
 	public void list(@ModelAttribute("pageObj") PageParam pageParam, Model model){
 
@@ -35,6 +56,16 @@ public class BoardController {
 	
 	@PostMapping("/write")
 	public String writePOST(BoardVO board, RedirectAttributes redirect) {
+		
+		log.info("==============");
+		log.info("write: " + board);
+		
+		if (board.getAttachList() != null) {
+			
+			board.getAttachList().forEach(attach -> log.info(attach));
+		}
+		
+		log.info("================");
 		
 		redirect.addFlashAttribute("result", service.write(board));
 		
