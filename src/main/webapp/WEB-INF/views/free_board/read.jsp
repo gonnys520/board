@@ -74,7 +74,7 @@ padding-left:0px;
                         </ol>
                     </div>
                 </div>
-                <!-- /.row -->
+                <!-- Form start -->
                         <div class="white-box">
                             <h3 class="box-title">READ</h3>
                             <p class="text-muted">글 내용을 보여줍니다.</p>
@@ -112,136 +112,95 @@ padding-left:0px;
                                        </div>
                                     </div>
                                 </div>
-                                    <!-- row -->
+                              </div>
+                           </div>
+                          </div>
+                               
+                                    <!-- 댓글 start -->
                     <div style="display:flex; width:100%; height:auto;">
                         <div class="white-box">
-                            <h3 class="col-md-20">COMMENTS</h3>
-                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 0;">댓글달기</button>
+                            <label class="col-md-20">COMMENTS</label>
+                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 32%;">댓글달기</button>
                                 </br>
                            <div class="panel-body">     
                             <div class="message-center">
                               <ul class="chat">
-                               <a href="">
-                                 <li data-rno=''>
-                                    
+                                 <li data-rno='' href="">
                                     <div class='mail-contnet' name='replyer'>
                                     	<h5></h5>
                                     <span class='mail-desc' name='reply'></span>
                                     <span class='time'></span> </div>
                                  </li>
-                               </a>
                               </ul>
                              </div>
                             </div>
-                            
-  
                             <div class="panel-footer">
                             <div class="dataTables_paginate paging_simple_numbers"
-    id="dataTables-example_paginate">        
+                                    id="dataTables-example_paginate">        
                             </div>
                             </div>
-
-
-
-                               
-                            </div>
-                        </div>
+                         </div>
+                       </div>
+                       <!-- 댓글 end -->
                          
-                                <div>
-                                <a href="/free_board/modify?bno=<c:out value="${board.bno}"/>">
-                                  <button type="submit" class="btn btn-warning">수정 및 삭제</button>
-                                </a>
-                                <a href="/free_board/list">
-                                  <button type="submit" class="btn btn-default">돌아가기</button>
-                                </a>
-    </div>
-
-
-                                  
-                             </div>
+                       <!-- 버튼 start -->  
+                <div>
+                <form role="form" action="/free_board/modify" method='get'>
+                <input type='hidden' name='page' value="${pageObj.page}">
+                <input type='hidden' name='bno' value="${pageObj.bno}">
+                <button type="submit" class="btn btn-warning">수정 및 삭제</button>
+                </form>
+                
+                <form role="form" action="/free_board/list" method='get'>
+                <input type='hidden' name='page' value="${pageObj.page}">
+                <button type="submit" class="btn btn-default">돌아가기</button>
+                </form>
+                </div>
+                       <!-- 버튼 end --> 
                         </div>
                     </div>
-                </div>
-                <!-- /.row -->
-            <!-- /.container-fluid -->
-                    </div>
+               <!-- Form end -->
 
-                
-                                
-                                <!-- 페이징 Start -->
-                
-<!--     <div class="dataTables_paginate paging_simple_numbers"
-    id="dataTables-example_paginate">
-    <ul class='pagination'
-      style="display: table; margin-left: auto; margin-right: auto">
-      
-        <li class='paginate_button previous'
-          aria-controls="dataTables-example" tabindex="0"
-          id="dataTables-example_previous"><a class='page-link' href=''>Previous</a></li>
-          
-        <li class='paginate_button' aria-controls="dataTables-example"
-          aria-controls="dataTables-example" tabindex="0"><a
-          class='page-link' href=''> </a></li>
 
-    
-        <li class='paginate_button next' aria-controls="dataTables-example"
-          tabindex="0" id="dataTables-example_next"><a
-          class='page-link' href=''>Next</a></li>
-
-    </ul>
-  </div> -->
-    <!-- 페이징 End -->
-
-                
-    <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal"
-					aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">COMMENT</h4>
-			</div>
-      
-			<div class="modal-body">
-      
-            <div class="form-group">
-            <label>Reply</label>
-            <input class="form-control" name='reply' value='New Reply!!!!'>
-            </div>
-            
-            <div class="form-group">
-            <label>Replyer</label>
-            <input class="form-control" name='replyer' value='replyer'>
-            </div>
-            
-            <div type='hidden' class="form-group">
-            <label>Reply Date</label>
-            <input class="form-control" name='replyDate' value=''>
-            </div>
-            
-            </div>
-            
-            <div class="modal-footer">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+					<label>Reply</label>
+					<input class="form-control" name='reply' value='new reply'>
+					</div>
+					<div class="form-group">
+					<label>Replyer</label>
+					<input type="text" class="form-control"  name='replyer'>
+					</div>
+					
+						<div class="form-group">
+					<label>Reply Date</label>
+					<input class="form-control" name='replydate'>
+					</div>	
+				
+				</div>
+				<div class="modal-footer">
             <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
             <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
             <button id='modalWriteBtn' type="button" class="btn btn-primary">Write</button>
             <button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
-
-		<!-- /.modal-content -->
-	 </div>
-	<!-- /.modal-dialog -->
-    </div>
-  <!-- /.modal--->
-  </div>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
 </div>
 
-
-                    </div>
-                </div>
-                <!-- /.row -->
-                
 
                 
 <%@include file="../includes/footer.jsp" %>
@@ -255,31 +214,15 @@ padding-left:0px;
     $(document).ready(function () {
     	
     	var bno = '<c:out value="${board.bno}"/>';
-    	
-    	
-    	
-        var bnoValue = '<c:out value="${board.bno}"/>';
         var replyUL = $(".chat");
-        var modal = $(".modal");
-        var modalInputReply = modal.find("input[name='reply']");
-        var modalIntputReplyer = modal.find("input[name='replyer']");
-        var modalInputReplyDate = modal.find("input[name='replyDate']");
-        
-        var modalModBtn = $("#modalModBtn");
-        var modalRemoveBtn = $("#modalRemoveBtn");
-        var modalWriteBtn = $("#modalWriteBtn");
-        var modalCloseBtn = $("#modalCloseBtn");
-        
-        var pageNum = 1;
-        var replyPageFooter =$(".panel-footer");
+
 
         showList(1);
                 
                 
         function showList(page){
         	
-        	replyService.getList({bno:bnoValue, page: page || 1},
-        			function(replyCnt, list) {
+        	replyService.getList({bno:bno, page: page || 1}, function(replyCnt, list) {
         		
         		console.log("replyCnt:" + replyCnt);
         		console.log("list:" + list);
@@ -292,15 +235,14 @@ padding-left:0px;
         		}
         		
                 var str= "";
-                
-                
         		if(list == null || list.length == 0){
         		return; 
         	}
         		
         		for (var i = 0, len = list.length || 0; i < len; i++){
         		str +="<li data-rno="+list[i].rno+">";
-/*          		str +="<div class="user-img"><img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"></div>";  */
+          		str +="<div class='user-img'></div>";
+/*           	<img src="../resources/plugins/images/users/gonnys.jpg" alt="user" class="img-circle"> */
         		str +="<div class='mail-contnet' name='replyer'><h5>"+list[i].replyer+"</h5>"
         		str +="<span class='mail-desc' name='reply'>"+list[i].reply+"</span>"
         		str +="<span class='time'>"+replyService.displayTime(list[i].replyDate)+"</span>"
@@ -312,7 +254,12 @@ padding-left:0px;
         	});
         };
         
-  function showReplyPage(replyCnt){
+        
+       	var pageNum = 1;
+     	var replyPageFooter =$(".panel-footer");
+        
+     		
+ 		function showReplyPage(replyCnt){
         	
         	var endNum = Math.ceil( pageNum / 10.0) * 10;
         	var startNum = endNum - 9;
@@ -367,32 +314,44 @@ padding-left:0px;
         	showList(pageNum);
         });
      
-    
-    console.log("===============");
-    console.log("JS TEST");
+        
+        var modal = $("#myModal");
+        var modalInputReply = modal.find("input[name='reply']");
+        var modalIntputReplyer = modal.find("input[name='replyer']");
+        var modalInputReplyDate = modal.find("input[name='replyDate']");
+       
+        var modalModBtn = $("#modalModBtn");
+        var modalRemoveBtn = $("#modalRemoveBtn");
+        var modalWriteBtn = $("#modalWriteBtn");
+        var modalCloseBtn = $("#modalCloseBtn");  
+        
+        var replyer = null;
     
     $("#addReplyBtn").on("click", function(e){
    	 
- 	   modal.find("input").val("");
+    modal.find("input[name='reply']").val('');
+	   modal.find("input[name='replyer']").val(replyer);
  	   modalInputReplyDate.closest("div").hide();
  	   modal.find("button[id !='modalCloseBtn']").hide();
  	   
  	   modalWriteBtn.show();
  	   
- 	   $("#myModal").show();
+ 	   console.log("click addReplyBtn")
  	   
-    });
+ 	  $("#myModal").show();
+ 	   
+    })
     
 
- $("#modalWriteBtn").on("click", function(e){
+	 $("#modalWriteBtn").on("click", function(e){
  	
- 	var reply = {
+ 		var reply = {
  			reply: modalInputReply.val(),
  			replyer: modalIntputReplyer.val(),
- 			bno: bnoValue
+ 			bno: bno
  	};
  	
-  	replyService.add(reply, function(result) {
+  		replyService.add(reply, function(result) {
  		
  		alert(result);
  		
@@ -406,6 +365,7 @@ padding-left:0px;
 
 
     $(".chat").on("click", "li", function(e){
+    	
     	
     	var rno = $(this).data("rno");
     	
@@ -424,7 +384,7 @@ padding-left:0px;
     	});
     });
     
-    $("#modalModBtn").on("click", function(e){
+  	  $("#modalModBtn").on("click", function(e){
     	
     	var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
     	replyService.update(reply, function(result){
@@ -443,7 +403,7 @@ padding-left:0px;
     	replyService.remove(rno, function(result){
     	
     		alert(result);
-    		modal.modal("hide");
+    		$("#myModal").hide();
     		showList(pageNum);
     	});
     });
@@ -453,6 +413,7 @@ padding-left:0px;
     	 $("#myModal").hide();
 			
 	});
+    
     
     $.getJSON("/free_board/getAttachList", {bno:bno}, function(arr) {
 		console.log(arr);
@@ -468,7 +429,7 @@ padding-left:0px;
 				
 				str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 				str += "<span><a href='/board/download?fileName="+fileCallPathOrigin+"'><font color='black'> "+ attach.fileName+ "</font></a></span><br/>";
-				str += "<img src='/board/display?fileName="+fileCallPath+"'>";
+				str += "<img src='/free_board/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
 			}else{
@@ -483,83 +444,45 @@ padding-left:0px;
 		
 		$(".uploadResult ul").html(str);
 	}); //end getjson
+	
+	
+	$(".uploadResult").on("click", "li", function(e){
+		console.log("view image");
+
+		var liObj = $(this);
+		
+		var path = encodeURIComponent(liObj.data("path") + "/" + liObj.data("uuid")+"_"+liObj.data("filename"));
+		
+		if(liObj.data("type")){
+			showImage(path.replace(new RegExp(/\\/g),"/"));
+		}else{
+			//download
+			self.location ="/board/download?fileName="+path
+		}
+	});
+		function showImage(fileCallPath){
+			
+			$(".bigPictureWrapper").css("display","flex").show();
+			$(".bigPicture")
+			.html("<img src='/free_board/display?fileName="+fileCallPath+"'>")
+			.animate({width:'100%', height:'100%'}, 1000);
+		}
+		
+		$(".bigPictureWrapper").on("click",function(e){
+			$(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+			setTimeout(function(){
+				$('.bigPictureWrapper').hide();
+			},1000);
+		});
+		
+		$(".bigPictureWrapper").on("click", function(e){
+			$(".bigPicture").animate({width:'0%', height: '0%'}, 1000);
+			setTimeout(function(){
+				$('.bigPictureWrapper').hide();
+			}, 1000);
+		})
 });
 
 </script>
 
-    
-/*     //reply List
-    replyService.getList({bno:bnoValue, page:1}, function(list){
-    	
-    	for(var i = 0, len = list.length||0; i < len; i++){
-    		console.log(list[i]);
-    	}
-    }); */
-    
-/*      //Remove
-    replyService.remove(3, function(count){
-    	
-    	console.log(count);
-    	
-    	if(count === "success"){
-    		alert("Removed");
-    	}
-    }, function(err) {
-    	alert("ERROR....");
-    }); */
-    
-
-/*     //reply List
-    replyService.getList({bno:bnoValue, page:1}, function(list){
-    	
-    	for(var i = 0, len = list.length||0; i < len; i++){
-    		console.log(list[i]);
-    	}
-    }); */
-    
-/*     //Remove
-    replyService.remove(2, function(count){
-    	
-    	console.log(count);
-    	
-    	if(count === "success"){
-    		alert("Removed");
-    	}
-    }, function(err) {
-    	alert("ERROR....");
-    }); */
-
-    
-/*     //Update
-    replyService.update({
-    	rno: 9,
-    	bno: bnoValue,
-    	reply: "리플수정중!"
-    }, function(result){
-    	alert("수정 완료!");
-    }); */
-    
-    
-/*     //Read
-    replyService.read(9, function(data){
-    	console.log(data);
-    }); */
-    
-    
-/*     //for replyService add test
-    replyService.add(
-    		{reply:"JS Test", replyer:"tester", bno:bnoValue}
-    		,
-    		function(result){
-    			alert("RESULT: " + result);
-    		}
-    	);
-     */
-
-
-    
-    
-    
-    
-    
     

@@ -12,5 +12,6 @@ public interface BoardAttachMapper {
 	
 	public List<BoardAttachVO> findByBno(Integer bno);
 	
+	public void removeAll(int bno);
 	
 }

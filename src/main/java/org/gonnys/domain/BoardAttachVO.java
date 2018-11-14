@@ -10,6 +10,6 @@ public class BoardAttachVO {
 	private String uuid;
 	private boolean fileType;
 	
-	private Integer bno;
+	private int bno;
 	
 }

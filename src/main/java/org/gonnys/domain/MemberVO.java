@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class MemberVO {
 	
-	private Integer bno, mno;
+	private int bno, mno;
 	private String id, pw;
 	private Date joindate;
 	

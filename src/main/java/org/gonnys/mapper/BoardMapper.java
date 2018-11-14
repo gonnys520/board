@@ -2,6 +2,7 @@ package org.gonnys.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.gonnys.domain.BoardVO;
 import org.gonnys.domain.PageParam;
 
@@ -29,7 +30,7 @@ public interface BoardMapper {
 	public int serchCount(PageParam pageParam);
 
 	
-	public void insertSelectKey(BoardVO board);
+	public int insertSelectKey(BoardVO board);
 	
 	
 

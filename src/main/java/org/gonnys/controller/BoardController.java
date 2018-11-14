@@ -57,7 +57,7 @@ public class BoardController {
 	@PostMapping("/write")
 	public String writePOST(BoardVO board, RedirectAttributes redirect) {
 		
-		log.info("==============");
+		log.info("==============write 1");
 		log.info("write: " + board);
 		
 		if (board.getAttachList() != null) {
@@ -65,9 +65,13 @@ public class BoardController {
 			board.getAttachList().forEach(attach -> log.info(attach));
 		}
 		
-		log.info("================");
+		log.info("================write 2");
 		
-		redirect.addFlashAttribute("result", service.write(board));
+		int result = service.write(board);
+		log.info("result :" + result);
+		
+		//redirect.addFlashAttribute("result", service.write(board));
+		redirect.addFlashAttribute("result", result == 1? "SUCCESS":"FAIL");
 		
 		return "redirect:/free_board/list";
 	}

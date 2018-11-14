@@ -17,5 +17,9 @@ delete from tbl_attach where uuid = #{uuid}
 select * from tbl_attach where bno = #{bno}
 </select>
 
+<delete id="removeAll">
+delete tbl_attach where bno = #{bno}
+</delete>
+
 
 </mapper>

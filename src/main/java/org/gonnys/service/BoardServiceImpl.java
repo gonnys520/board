@@ -38,11 +38,9 @@ public class BoardServiceImpl implements BoardService {
 		
 		log.info("write............."+board);
 		
-		int result = mapper.write(board);
-		
-		mapper.insertSelectKey(board);
-		
-		
+		int result = mapper.insertSelectKey(board);
+
+	
 		if(board.getAttachList() == null || board.getAttachList().size() <= 0) {
 			return result;
 		}
@@ -66,10 +64,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.read(param);
 	}
 
+	@Transactional
 	@Override
 	public int remove(PageParam param) {
 		
 		log.info("remove.............");
+		attachMapper.removeAll(param.getBno());
 		
 		return mapper.remove(param);
 	}

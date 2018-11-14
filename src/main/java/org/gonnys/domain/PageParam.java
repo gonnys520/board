@@ -58,6 +58,7 @@ public class PageParam {
 	
 	
 	public String getLink(String path) {
+		
 		return UriComponentsBuilder.fromPath(path)
 				.queryParam("bno", this.bno)
 				.queryParam("page", this.page)
