@@ -113,14 +113,30 @@ padding-left:0px;
                                     </div>
                                 </div>
                               </div>
-                           </div>
-                          </div>
-                               
-                                    <!-- 댓글 start -->
-                    <div style="display:flex; width:100%; height:auto;">
+                                                     <!-- 버튼 start -->
+                                                     
+                <div class="col-md-12 col-lg-6 col-sm-12">
+                <form role="form" action="/free_board/modify" method='get'>
+                <input type='hidden' name='page' value="${pageObj.page}">
+                <input type='hidden' name='bno' value="${pageObj.bno}">
+                <button type="submit" class="btn btn-warning">수정 및 삭제</button>
+                </form>
+                
+                <form role="form" action="/free_board/list" method='get'>
+                <input type='hidden' name='page' value="${pageObj.page}">
+                <button type="submit" class="btn btn-default">돌아가기</button>
+                </form>
+                </div>
+               </div>
+             </div>
+                
+                       <!-- 버튼 end --> 
+
+                    <!--댓글 start-->
+                    <div class="col-md-12 col-lg-6 col-sm-12">
                         <div class="white-box">
                             <label class="col-md-20">COMMENTS</label>
-                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 32%;">댓글달기</button>
+                                  <button id="addReplyBtn" class="btn btn-success" style="position: absolute; right: 0%;">댓글달기</button>
                                 </br>
                            <div class="panel-body">     
                             <div class="message-center">
@@ -134,6 +150,7 @@ padding-left:0px;
                               </ul>
                              </div>
                             </div>
+                            <!-- 댓글 페이징 -->
                             <div class="panel-footer">
                             <div class="dataTables_paginate paging_simple_numbers"
                                     id="dataTables-example_paginate">        
@@ -143,51 +160,44 @@ padding-left:0px;
                        </div>
                        <!-- 댓글 end -->
                          
-                       <!-- 버튼 start -->  
-                <div>
-                <form role="form" action="/free_board/modify" method='get'>
-                <input type='hidden' name='page' value="${pageObj.page}">
-                <input type='hidden' name='bno' value="${pageObj.bno}">
-                <button type="submit" class="btn btn-warning">수정 및 삭제</button>
-                </form>
-                
-                <form role="form" action="/free_board/list" method='get'>
-                <input type='hidden' name='page' value="${pageObj.page}">
-                <button type="submit" class="btn btn-default">돌아가기</button>
-                </form>
-                </div>
-                       <!-- 버튼 end --> 
-                        </div>
-                    </div>
+
+
+                 </div>
+                 </div>
                <!-- Form end -->
 
 
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<div class="form-group">
-					<label>Reply</label>
-					<input class="form-control" name='reply' value='new reply'>
-					</div>
-					<div class="form-group">
-					<label>Replyer</label>
-					<input type="text" class="form-control"  name='replyer'>
-					</div>
-					
-						<div class="form-group">
-					<label>Reply Date</label>
-					<input class="form-control" name='replydate'>
-					</div>	
-				
-				</div>
-				<div class="modal-footer">
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="myModalLabel">COMMENT</h4>
+			</div>
+      
+			<div class="modal-body">
+      
+            <div class="form-group">
+            <label>Reply</label>
+            <input class="form-control" name='reply' value='New Reply!!!!'>
+            </div>
+            
+            <div class="form-group">
+            <label>Replyer</label>
+            <input class="form-control" name='replyer' value='replyer'>
+            </div>
+            
+            <div type='hidden' class="form-group">
+            <label>Reply Date</label>
+            <input class="form-control" name='replyDate' value=''>
+            </div>
+            
+            </div>
+            
+            <div class="modal-footer">
             <button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
             <button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
             <button id='modalWriteBtn' type="button" class="btn btn-primary">Write</button>
@@ -204,9 +214,8 @@ padding-left:0px;
 
                 
 <%@include file="../includes/footer.jsp" %>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-	crossorigin="anonymous"></script>
+
+
 <script type="text/javascript" src="/resources/js/reply.js"></script>
     
 <script>
@@ -215,6 +224,21 @@ padding-left:0px;
     	
     	var bno = '<c:out value="${board.bno}"/>';
         var replyUL = $(".chat");
+        
+        var modal = $(".modal");
+        var modalInputReply = modal.find("input[name='reply']");
+        var modalIntputReplyer = modal.find("input[name='replyer']");
+        var modalInputReplyDate = modal.find("input[name='replyDate']");
+       
+        var modalModBtn = $("#modalModBtn");
+        var modalRemoveBtn = $("#modalRemoveBtn");
+        var modalWriteBtn = $("#modalWriteBtn");
+        var modalCloseBtn = $("#modalCloseBtn");  
+        
+        var replyer = null;
+        
+       	var pageNum = 1;
+     	var replyPageFooter =$(".panel-footer");
 
 
         showList(1);
@@ -254,10 +278,7 @@ padding-left:0px;
         	});
         };
         
-        
-       	var pageNum = 1;
-     	var replyPageFooter =$(".panel-footer");
-        
+
      		
  		function showReplyPage(replyCnt){
         	
@@ -301,46 +322,20 @@ padding-left:0px;
         	
         }
         
-        replyPageFooter.on("click", "li a", function(e){
-        	e.preventDefault();
-        	console.log("page click");
-        	
-        	var targetPageNum = $(this).attr("href");
-        	
-        	console.log("targetPageNum: " + targetPageNum);
-        	
-        	pageNum = targetPageNum;
-        	
-        	showList(pageNum);
-        });
-     
-        
-        var modal = $("#myModal");
-        var modalInputReply = modal.find("input[name='reply']");
-        var modalIntputReplyer = modal.find("input[name='replyer']");
-        var modalInputReplyDate = modal.find("input[name='replyDate']");
-       
-        var modalModBtn = $("#modalModBtn");
-        var modalRemoveBtn = $("#modalRemoveBtn");
-        var modalWriteBtn = $("#modalWriteBtn");
-        var modalCloseBtn = $("#modalCloseBtn");  
-        
-        var replyer = null;
-    
+
     $("#addReplyBtn").on("click", function(e){
    	 
-    modal.find("input[name='reply']").val('');
-	   modal.find("input[name='replyer']").val(replyer);
- 	   modalInputReplyDate.closest("div").hide();
- 	   modal.find("button[id !='modalCloseBtn']").hide();
+       modal.find("input").val("");
+	   modalInputReplyDate.closest("div").hide();
+	   modal.find("button[id !='modalCloseBtn']").hide();
  	   
  	   modalWriteBtn.show();
  	   
  	   console.log("click addReplyBtn")
  	   
- 	  $("#myModal").show();
+ 	  $(".modal").modal("show");
  	   
-    })
+    });
     
 
 	 $("#modalWriteBtn").on("click", function(e){
@@ -356,7 +351,7 @@ padding-left:0px;
  		alert(result);
  		
  		modal.find("input").val("");
- 		modal.hide();
+ 		modal.modal("hide");
  		
  		showList(-1);
  		
@@ -380,7 +375,7 @@ padding-left:0px;
     		modalModBtn.show();
     		modalRemoveBtn.show();
     		
-    		$("#myModal").show();
+    		$(".modal").modal("show");
     	});
     });
     
@@ -390,7 +385,7 @@ padding-left:0px;
     	replyService.update(reply, function(result){
     		
     		alert(result);
-    		$("#myModal").hide();
+    		modal.modal("hide");
     		showList(pageNum);
     	});
     	
@@ -403,14 +398,27 @@ padding-left:0px;
     	replyService.remove(rno, function(result){
     	
     		alert(result);
-    		$("#myModal").hide();
+    		modal.modal("hide");
     		showList(pageNum);
     	});
     });
     
     
+    replyPageFooter.on("click", "li a", function(e){
+    	e.preventDefault();
+    	console.log("page click");
+    	
+    	var targetPageNum = $(this).attr("href");
+    	
+    	console.log("targetPageNum: " + targetPageNum);
+    	
+    	pageNum = targetPageNum;
+    	
+    	showList(pageNum);
+    });
+    
     $("#modalCloseBtn").on("click", function(e){
-    	 $("#myModal").hide();
+    	modal.modal("hide");
 			
 	});
     
