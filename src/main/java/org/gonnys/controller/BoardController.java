@@ -21,15 +21,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
-@Controller
-@RequestMapping("/free_board/*")
-@AllArgsConstructor
+	@Controller
+	@RequestMapping("/board/*")
+	@AllArgsConstructor
 @Log4j
 public class BoardController {
 
 	private BoardService service;
 	
-	//첨부파일 read
+	//泥⑤��뙆�씪 read
 	@GetMapping(value = "/getAttachList",
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
@@ -73,7 +73,7 @@ public class BoardController {
 		//redirect.addFlashAttribute("result", service.write(board));
 		redirect.addFlashAttribute("result", result == 1? "SUCCESS":"FAIL");
 		
-		return "redirect:/free_board/list";
+		return "redirect:/board/list";
 	}
 	
 	@GetMapping({"/read", "/write", "/modify"})
@@ -88,7 +88,7 @@ public class BoardController {
 		int count = service.remove(pageParam);
 		redirect.addFlashAttribute("result", count == 1? "success" : "fail");
 		
-		return "redirect:/free_board/list?page="+pageParam.getPage();
+		return "redirect:/board/list?page="+pageParam.getPage();
 	}
 	
 
@@ -97,7 +97,7 @@ public class BoardController {
 		
 		redirect.addFlashAttribute("result", service.modify(board) ==1?"SUCCESS":"FAIL");
 		
-		return pageParam.getLink("redirect:/free_board/read/");
+		return pageParam.getLink("redirect:/board/read/");
 	}
 	
 	

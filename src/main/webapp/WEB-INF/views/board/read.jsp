@@ -116,13 +116,13 @@ padding-left:0px;
                                                      <!-- 버튼 start -->
                                                      
                 <div class="col-md-12 col-lg-6 col-sm-12">
-                <form role="form" action="/free_board/modify" method='get'>
+                <form role="form" action="/board/modify" method='get'>
                 <input type='hidden' name='page' value="${pageObj.page}">
                 <input type='hidden' name='bno' value="${pageObj.bno}">
                 <button type="submit" class="btn btn-warning">수정 및 삭제</button>
                 </form>
                 
-                <form role="form" action="/free_board/list" method='get'>
+                <form role="form" action="/board/list" method='get'>
                 <input type='hidden' name='page' value="${pageObj.page}">
                 <button type="submit" class="btn btn-default">돌아가기</button>
                 </form>
@@ -254,7 +254,8 @@ padding-left:0px;
         		
         		if(page == -1) {
         			pageNum = Math.ceil(replyCnt/10.0);
-        			showList(pageNum);
+        			showList(pageNum);0.
+        			0
         			return;
         		}
         		
@@ -423,7 +424,7 @@ padding-left:0px;
 	});
     
     
-    $.getJSON("/free_board/getAttachList", {bno:bno}, function(arr) {
+    $.getJSON("/board/getAttachList", {bno:bno}, function(arr) {
 		console.log(arr);
 		
 		var str = "";
@@ -437,7 +438,7 @@ padding-left:0px;
 				
 				str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 				str += "<span><a href='/board/download?fileName="+fileCallPathOrigin+"'><font color='black'> "+ attach.fileName+ "</font></a></span><br/>";
-				str += "<img src='/free_board/display?fileName="+fileCallPath+"'>";
+				str += "<img src='/board/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
 			}else{
@@ -472,7 +473,7 @@ padding-left:0px;
 			
 			$(".bigPictureWrapper").css("display","flex").show();
 			$(".bigPicture")
-			.html("<img src='/free_board/display?fileName="+fileCallPath+"'>")
+			.html("<img src='/board/display?fileName="+fileCallPath+"'>")
 			.animate({width:'100%', height:'100%'}, 1000);
 		}
 		

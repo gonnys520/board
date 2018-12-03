@@ -52,7 +52,7 @@
                                             <td><c:out value="${board.bno}"/></td>
                                             <td>
                                              
-                                             <a href='/free_board/read?bno=<c:out value="${board.bno}"/>'>                                            
+                                             <a href='/board/read?bno=<c:out value="${board.bno}"/>'>                                            
                                              <c:out value='${board.del.equals("X")?board.title:"삭제된 글입니다."}'/></a>
                                              
                                              </td>
@@ -84,7 +84,7 @@
 
                                 </table>
                 <div class="center p-20">
-                    <button type="submit" onclick="location.href='/free_board/write'"
+                    <button type="submit" onclick="location.href='/board/write'"
                     class="btn btn-danger btn-block btn-rounded waves-effect waves-light">글쓰기</button>
                 </div>
                             
@@ -197,7 +197,7 @@
 	var target = $(this).attr("href");
 	console.log(target);
 	$("#page").val(target);
-	actionForm.attr("action","/free_board/list")
+	actionForm.attr("action","/board/list")
 	.attr("method","get").submit();
 	});
 	
@@ -208,7 +208,7 @@
 		
 		var display = $(this).val();
 		$("#display").val(display);
-		actionForm.attr("action", "/free_board/list")
+		actionForm.attr("action", "/board/list")
 		.attr("method", "get").submit();
 	});
 	
@@ -233,7 +233,7 @@
 		
  
 		
-		actionForm.attr("action","/free_board/list");
+		actionForm.attr("action","/board/list");
 		actionForm.find("input[name='type']").val(searchTypeValue);
 		actionForm.find("input[name='keyword']").val(searchKeyword);
 		$("#page").val(1);

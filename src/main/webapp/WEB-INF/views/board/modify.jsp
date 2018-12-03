@@ -77,7 +77,7 @@
     <div class="table-responsive">
       <div class="col-md-8 col-xs-20">
         <div class="white-box">
-          <form class="myForm" action="/free_board/modify" method="post">
+          <form class="myForm" action="/board/modify" method="post">
             <input type='hidden' name='bno' value='${board.bno}'>
             <div class="form-group">
               <label class="col-md-20">TITLE</label>
@@ -119,11 +119,11 @@
       <!-- table-responsive end -->
     </div>
 
-    <form role="form" action="/free_board/remove" method="post">
+    <form role="form" action="/board/remove" method="post">
       <input type='hidden' name='bno' value='${board.bno}'>
       <button type="submit" data-oper='remove' class="btn btn-warning">삭제하기</button>
     </form>
-    <form role="form" action="/free_board/read" method="get">
+    <form role="form" action="/board/read" method="get">
       <input type='hidden' name='bno' value='${board.bno}'>
       <button type="submit" data-oper='read' class="btn btn-danger">돌아가기</button>
     </form>
@@ -164,7 +164,7 @@ $(document).ready(function(){
 	
 	var bno = '<c:out value="${pageObj.bno}"/>';
 	
-	$.getJSON("/free_board/getAttachList", {bno: bno}, function(arr){
+	$.getJSON("/board/getAttachList", {bno: bno}, function(arr){
 		console.log(arr);
 		
 		var str ="";
@@ -179,7 +179,7 @@ $(document).ready(function(){
 				str += "<li data-path='"+attach.uploadPath+"' data-uuid='"+attach.uuid+"' data-filename='"+attach.fileName+"' data-type='"+attach.fileType+"' ><div>";
 				str += "<span><font color='black'> "+ attach.fileName+ "</font></a></span><br/>";
 				str += "<a href='#' data-file=\'"+fileCallPath+"\'data-type='image' class='panel-remove'><span class='fa fa-times'></span></a><br>";
-				str += "<img src='/free_board/display?fileName="+fileCallPath+"'>";
+				str += "<img src='/board/display?fileName="+fileCallPath+"'>";
 				str += "</div>";
 				str +"</li>";
 			}else{
@@ -208,7 +208,7 @@ $(document).ready(function(){
 			var targetLi = $(this).closest("li");
 			
 			$.ajax({
-				url: '/free_board/deleteFile',
+				url: '/board/deleteFile',
 				data: {fileName: targetFile, type:type},
 				dataType:'text',
 				type: 'POST',
@@ -251,7 +251,7 @@ $(document).ready(function(){
 	}
 	
 	$.ajax({
-		url: '/free_board/uploadAjaxAction',
+		url: '/board/uploadAjaxAction',
 		processData: false,
 		contentType: false,
 		data: formData,
@@ -282,7 +282,7 @@ $(document).ready(function(){
 			str +  "><div>";
 			str += "<span>" + obj.fileName + "</span>";
 			str += "<a href='#' data-file=\'"+fileCallPath+"\'data-type='image' class='panel-remove'><span class='fa fa-times'></span></a><br>";
-			str += "<img src='/free_board/display?fileName="+fileCallPath+"'>";
+			str += "<img src='/board/display?fileName="+fileCallPath+"'>";
 			str += "</div>";
 			str += "</li>";
 		}else{

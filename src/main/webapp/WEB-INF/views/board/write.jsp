@@ -50,7 +50,7 @@
                             
                     <div class="col-md-8 col-xs-20">
                         <div class="white-box">
-                            <form class="form-horizontal form-material" action="/free_board/write" method="post">
+                            <form class="form-horizontal form-material" action="/board/write" method="post">
                                 <div class="form-group">
                                     <label class="col-md-20">TITLE</label>
                                     <div class="col-md-20">
@@ -81,7 +81,7 @@
                                 </div>
                                
                                         <button id="submitBtn" type="submit" class="btn btn-warning">작성완료</button>
-<!--                                          <a href="/free_board/list">
+<!--                                          <a href="/board/list">
                                             <button class="btn btn-success">돌아가기</button>
                                             </a> -->
                                             </form>
@@ -163,7 +163,7 @@
 			}
 			
 			$.ajax({
-				url : '/free_board/uploadAjaxAction',
+				url : '/board/uploadAjaxAction',
 				processData : false,
 				contentType : false,
 				data : formData,
@@ -200,7 +200,7 @@
 					str +  "><div>";
 					str += "<span>"+obj.fileName+"</span>";
 					str += "<button type ='button' data-file=\'"+fileCallPath+"\'data-type='image' class='btn btn-primary btn-circle'>X<i class='fa fa-items'></i></button><br>";
-					str += "<img src='/free_board/display?fileName="+fileCallPath+"'>";
+					str += "<img src='/board/display?fileName="+fileCallPath+"'>";
 					str += "</div>";
 					str += "</li>";
 
@@ -236,7 +236,7 @@
 
 			
 			$.ajax({
-				url: '/free_board/deleteFile',
+				url: '/board/deleteFile',
 				data: {fileName: targetFile, type:type},
 				dataType:'text',
 				type: 'POST',

@@ -41,7 +41,7 @@
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top m-b-0">
             <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-bars"></i></a>
-                <div class="top-left-part"><a class="logo" href="/free_board/list"><b><img src="../resources/plugins/images/pixeladmin-logo.png" alt="home" /></b><span class="hidden-xs"><img src="../resources/plugins/images/logo_text.png" alt="home" /></span></a></div>
+                <div class="top-left-part"><a class="logo" href="/board/list"><b><img src="../resources/plugins/images/pixeladmin-logo.png" alt="home" /></b><span class="hidden-xs"><img src="../resources/plugins/images/logo_text.png" alt="home" /></span></a></div>
                 <ul class="nav navbar-top-links navbar-left m-l-20 hidden-xs">
                 </ul>
                 <ul class="nav navbar-top-links navbar-right pull-right">
@@ -72,7 +72,7 @@
                         <a href="fontawesome.html" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i><span class="hide-menu">BLOG</span></a>
                     </li>
                     <li>
-                        <a href="/free_board/list" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">FREE BOARD</span></a>
+                        <a href="/board/list" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i><span class="hide-menu">FREE BOARD</span></a>
                     </li>
                     <li>
                         <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i><span class="hide-menu">CONTACT</span></a>

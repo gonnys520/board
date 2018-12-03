@@ -92,7 +92,7 @@
 	  $(".bigPictureWrapper").css("display","flex").show();
 	
 	  $(".bigPicture")
-	  .html("<img src='/free_board/display?fileName="+encodeURI(fileCallPath)+"'>")
+	  .html("<img src='/board/display?fileName="+encodeURI(fileCallPath)+"'>")
 	  .animate({width:'100%', height: '100%'}, 1000);
   }
   
@@ -125,7 +125,7 @@
 						
 						var fileLink = fileCallPath.replace(new RegExp(/\\/g), "/");
 						
-						str += "<li><div><a href='/free_board/download?fileName="+fileCallPath+"'>"
+						str += "<li><div><a href='/board/download?fileName="+fileCallPath+"'>"
 								+"<img src='/resources/img/attach.png'>"+obj.fileName+"</a>"+
 								"<span data-file=\'"+fileCallPath+"\' data-type='file'> x </span>"+
 								"<div></li>"
@@ -139,7 +139,7 @@
 						originPath = originPath.replace(new RegExp(/\\/g), "/");
 			
 						str += "<li><a href=\"javascript:showImage(\'"+ originPath + "\')\">"+
-							   "<img src='/free_board/display?fileName="+fileCallPath+"'></a>"+ 
+							   "<img src='/board/display?fileName="+fileCallPath+"'></a>"+ 
 							   "<span data-file=\'"+fileCallPath+"\' data-type='image'> x </span>"+
 							   "</li>";
 					}
@@ -194,7 +194,7 @@
 
 			  
 	$.ajax({
-		url: '/free_board/uploadAjaxAction',
+		url: '/board/uploadAjaxAction',
 		processData: false,
 		contentType: false,
 		data: {fileName: targetFile, type:type},

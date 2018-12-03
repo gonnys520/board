@@ -33,7 +33,7 @@ import lombok.extern.log4j.Log4j;
 import net.coobird.thumbnailator.Thumbnailator;
 
 @Controller
-@RequestMapping("/free_board/*")
+@RequestMapping("/board/*")
 @Log4j
 public class UploadController {
 	
